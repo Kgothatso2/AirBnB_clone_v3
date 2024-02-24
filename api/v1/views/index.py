@@ -20,9 +20,6 @@ def view_status():
 
 @app_views.route("/stats", strict_slashes=False)
 def view_stats():
-classes = [Amenity, City, Place, Review, State, User]  # Define the classes
-
-
     """Veiw function that retrieves the number of each object by type"""
     return jsonify({
         "amenities": models.storage.count(Amenity),
@@ -32,10 +29,3 @@ classes = [Amenity, City, Place, Review, State, User]  # Define the classes
         "states": models.storage.count(State),
         "users": models.storage.count(User)
     })
-    
-    counts = {}
-
-    for cls in classes:
-        counts[cls.__name__.lower()] = models.storage.count(cls)  # Use class name as key
-
-    return jsonify(counts) 
