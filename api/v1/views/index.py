@@ -29,3 +29,8 @@ def view_stats():
         "states": models.storage.count(State),
         "users": models.storage.count(User)
     })
+
+    for cls in classes:
+        count = storage.count(cls)
+        total[classes.get(cls)] = count
+    return jsonify(total)
